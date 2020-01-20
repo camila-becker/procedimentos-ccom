@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <title>Procedimentos CCOM</title>
+
+    <!-- Principal CSS do Bootstrap -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <nav class="navbar navbar-dark background flex-md-nowrap p-2 shadow">
+      <a class="navbar-brand col-sm-3 col-md-2 mr-0 mb-0" href="index.html">
+        <img src="img/logo-modular.png" alt="Logo Modular" />
+        <span class="ml-2">Procedimentos CCOM</span>
+      </a>
+
+      <div
+        class="btn-group mr-2"
+        role="group"
+        aria-label="Grupo de botões com dropdown aninhado"
+      >
+        <div class="btn-group" role="group">
+          <button
+            id="btnGroupDrop1"
+            type="button"
+            class="btn background dropdown-toggle"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Controle de Jornada
+          </button>
+          <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+            <a class="dropdown-item menu-inicio" href="#">
+              Início de jornada
+            </a>
+            <a class="dropdown-item menu-descanso" href="#">Parada descanso</a>
+            <a class="dropdown-item menu-refeicao" href="#">Parada refeição</a>
+            <a class="dropdown-item menu-fim" href="#">Fim de jornada</a>
+          </div>
+        </div>
+        <div class="btn-group" role="group">
+          <button
+            id="btnGroupDrop2"
+            type="button"
+            class="btn background dropdown-toggle"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Gerenciadora de Risco
+          </button>
+          <div class="dropdown-menu" aria-labelledby="btnGroupDrop2">
+            <a class="dropdown-item menu-abandono" href="#"
+              >Abandono de veículo</a
+            >
+            <a class="dropdown-item menu-fim-viagem" href="#"
+              >Fim fora do destino</a
+            >
+            <a class="dropdown-item menu-rota" href="#">Fora de rota</a>
+            <a class="dropdown-item menu-parada-excedida" href="#"
+              >Parada excedida</a
+            >
+            <a class="dropdown-item menu-parada-residencia" href="#"
+              >Parada em residência</a
+            >
+            <a class="dropdown-item menu-parada-proibida" href="#"
+              >Parada proibida</a
+            >
+            <a class="dropdown-item menu-perda-sinal" href="#"
+              >Perda de sinal</a
+            >
+            <a class="dropdown-item menu-macros" href="#">Uso de macros</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <section id="inicio-jornada" class="cards">
+      <div class="card" style="width: 60rem; text-align: center;">
+        <div class="card-header bg-info">
+          <h5 class="card-title font-weight-bold">
+            Início de Jornada.
+          </h5>
+          <p class="card-text">
+            Procedimento a ser seguido quando o motorista não envia a macro de
+            <span class="font-weight-bold">início de jornada</span>.
+          </p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            Verificar no histograma (gestor), se o motorista enviou a macro.
+          </li>
+          <li class="list-group-item">
+            Se o motorista não enviou a macro, cobrar que seja enviado, ligando
+            ou enviando mensagem ao motorista.
+          </li>
+          <li class="list-group-item">
+            Se mesmo após a cobrança, motorista não enviar a macro, registrar
+            ocorrência e notificar a frota e a filial responsável pelo
+            motorista, via e-mail.
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="parada-descanso" class="cards">
+      <div class="card" style="width: 60rem; text-align: center;">
+        <div class="card-header bg-info">
+          <h5 class="card-title font-weight-bold">
+            Parada Descanso.
+          </h5>
+          <p class="card-text">
+            Procedimento a ser seguido quando o motorista não envia a macro de
+            <span class="font-weight-bold">parada descanso</span>.
+          </p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            Verificar no histograma (gestor), se o motorista enviou a macro e se
+            permaneceu com ela ativa por no mínimo 30 minutos.
+          </li>
+          <li class="list-group-item">
+            Se o motorista não enviou a macro, cobrar que seja enviado, ligando
+            ou enviando mensagem ao motorista.
+          </li>
+          <li class="list-group-item">
+            Se o motorista enviou a macro, mais permaneceu nela por menos de 30
+            minutos, cobrar que seja feito a parada descanso, com o tempo mínimo
+            de 30 minutos, caso motorista não faça, ir para o próximo passo.
+          </li>
+          <li class="list-group-item">
+            Se o motorista rodou mais do que 05h:30min e depois fez a parada, ou
+            se ele não fez a parada, registrar ocorrência e notificar a frota e
+            a filial responsável pelo motorista, via e-mail.
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="parada-refeicao" class="cards">
+      <div class="card" style="width: 60rem; text-align: center;">
+        <div class="card-header bg-info">
+          <h5 class="card-title font-weight-bold">
+            Parada Refeição.
+          </h5>
+          <p class="card-text">
+            Procedimento a ser seguido quando o motorista não envia a macro de
+            <span class="font-weight-bold">parada refeição</span>.
+          </p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            Verificar no histograma (gestor), se o motorista enviou a macro.
+          </li>
+          <li class="list-group-item">
+            Se o motorista não enviou a macro, cobrar que seja enviado, ligando
+            ou enviando mensagem ao motorista. O motorista tem até o final da
+            sua jornada, para fazer a parada refeição.
+          </li>
+          <li class="list-group-item">
+            Se o motorista enviou a macro, mais permaneceu nela por menos de 1
+            hora, não há necessidade de cobrar que ele faça a parada novamente,
+            aguarde até o fim da jornada, caso ele permaneça sem fazer a parada
+            com o tempo mínimo de 1 hora, ir para o próximo passo.
+          </li>
+          <li class="list-group-item">
+            Registrar ocorrência e notificar a frota e a filial responsável pelo
+            motorista, via e-mail.
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="fim-jornada" class="cards">
+      <div class="card" style="width: 60rem; text-align: center;">
+        <div class="card-header bg-info">
+          <h5 class="card-title font-weight-bold">
+            Fim de Jornada.
+          </h5>
+          <p class="card-text">
+            Procedimento a ser seguido quando o motorista não envia a macro de
+            <span class="font-weight-bold">fim de jornada</span>.
+          </p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            Verificar no histograma (gestor), se o motorista enviou a macro.
+          </li>
+          <li class="list-group-item">
+            Se o motorista não enviou a macro, cobrar que seja enviado, ligando
+            ou enviando mensagem ao motorista.
+          </li>
+          <li class="list-group-item">
+            Se mesmo após a cobrança, motorista não enviar a macro, registrar
+            ocorrência e notificar a frota e a filial responsável pelo
+            motorista, via e-mail.
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="abandono" class="cards">
+      <div class="card" style="width: 60rem; text-align: center;">
+        <div class="card-header bg-info">
+          <h5 class="card-title font-weight-bold">
+            Abandono de Veículo.
+          </h5>
+          <p class="card-text">
+            Procedimento a ser seguido quando o motorista abandona o veículo
+            carregado.
+          </p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            Entrar em contato com o motorista, informando que abandonar o
+            veículo é quebra de GR e solicitar que ele retorne ao veículo.
+          </li>
+          <li class="list-group-item">
+            Se o motorista se recusar a retornar ao veículo, entrar em contato
+            com o responsável da filial de origem, responsável pelo carregamento
+            do veículo, informando a situação.
+          </li>
+          <li class="list-group-item">
+            Se não conseguir contato com o motorista, entrar em contato com o
+            responsável da filial de origem, responsável pelo carregamento do
+            veículo, informando a situação.
+          </li>
+          <li class="list-group-item">
+            Se o responsável da filial não conseguir fazer o motorista retornar
+            ao veículo, perguntar se ele autoriza essa situação, se ele
+            autorizar, pegar uma previsão para reinicio de viagem do veículo e
+            informar à GR que está autorizado desconsiderar essa ocorrência, até
+            a previsão de reinicio informada.
+          </li>
+          <li class="list-group-item">
+            Se não conseguir contato com o responsável da filial, enviar e-mail
+            informando a situação, para a filial de origem e destino.
+          </li>
+          <li class="list-group-item">
+            Informar à GR o que foi tratado, se não teve sucesso nas tratativas,
+            apenas informar que está sendo tratado internamente.
+          </li>
+          <li class="list-group-item">
+            Enviar e-mail para a filial de origem e destino, sobre a situação,
+            solicitando que o motorista seja orientado a cumprir as regras do
+            PGR.
+          </li>
+          <li class="list-group-item">
+            Em caso de suspeita de sinistro, solicitar que o veículo seja
+            enviado ao CTO.
+          </li>
+          <li class="list-group-item">
+            Autorizar pronta resposta somente com autorização do Giulian.
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="fim-viagem" class="cards">
+      <div class="card" style="width: 60rem; text-align: center;">
+        <div class="card-header bg-info">
+          <h5 class="card-title font-weight-bold">
+            Fim de Viagem (Fora do destino).
+          </h5>
+          <p class="card-text">
+            Procedimento a ser seguido quando a GR questiona sobre fim de
+            viagem, fora do destino.
+          </p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            Verificar o local onde foi informado o fim de viagem, pela
+            tecnologia se tiver acesso ou pelo Apisullog.
+          </li>
+          <li class="list-group-item">
+            Verificar no clicktrans o manifesto do veículo, verificar qual a
+            origem e destino da mercadoria.
+          </li>
+          <li class="list-group-item">
+            Entrar em contato com o motorista, verificar se ele enviou a macro
+            depois que o veículo ficou vazio ou quando chegou no local, antes de
+            descarregar.
+          </li>
+          <li class="list-group-item">
+            Se o motorista confirmar que está vazio, e o local que foi enviado a
+            macro for o mesmo que o destino que está no manifesto, informar à GR
+            que pode finalizar a SMP.
+          </li>
+          <li class="list-group-item">
+            Se não conseguir contato com o motorista, tentar contato com a
+            filial de destino (caso não seja entrega direta no cliente) e
+            verificar se o veículo está lá e se já descarregou a mercadoria. Se
+            sim, informar à GR que pode finalizar a SMP.
+          </li>
+          <li class="list-group-item">
+            Se não conseguir contato com o motorista, e a entrega for direta no
+            cliente, tentar contato com a filial de origem, para verificar se
+            eles tem alguma informação sobre a entrega ou contato com o
+            motorista. Se conseguir confirmar que ele já finalizou a entrega,
+            informar à GR que pode finalizar a SMP.
+          </li>
+          <li class="list-group-item">
+            Só confirmar o fim de viagem para a GR, se tiver certeza que o
+            veículo já encerrou ela, se houver qualquer dúvida, não confirmar o
+            fim e pedir para a GR aguardar enquanto é verificado a situação.
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="rota" class="cards">
+      <div class="card" style="width: 60rem; text-align: center;">
+        <div class="card-header bg-info">
+          <h5 class="card-title font-weight-bold">
+            Fora de Rota.
+          </h5>
+          <p class="card-text">
+            Procedimento a ser seguido quando a GR informa que o veículo está
+            <span class="font-weight-bold">fora de rota</span>.
+          </p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            Verificar no clicktrans o manifesto do veículo, verificar qual
+            origem e destino da carga.
+          </li>
+          <li class="list-group-item">
+            Verificar no Apisullog, qual rota o veículo está seguindo.
+          </li>
+          <li class="list-group-item">
+            Se for possível cadastrar rota alternativa, efetuar o cadastro no
+            Apisullog e informar à GR a nova rota, solicitando que seja alterada
+            na SMP.
+          </li>
+          <li class="list-group-item">
+            Caso não tenha certeza qual a rota que o motorista vai seguir,
+            informar à GR para desconsiderar o alerta e que aquela rota será
+            cadastrada ao final da viagem.
+          </li>
+          <li class="list-group-item">
+            Caso o veículo esteja em viagem intinerante, onde vai realizar
+            diversas entregas no mesmo estado, ex: Interior do Paraná, informar
+            à GR as cidades onde o veículo tem entrega e solicitar que o alerta
+            de rota seja desconsiderado.
+          </li>
+          <li class="list-group-item">
+            Se for um desvio ou inversão de rota, e se você não souber
+            identificar o porque o motorista está seguindo aquela rota, tentar
+            contato com o motorista, se não conseguir contato, solicitar que a
+            GR envie comandos ao veículo e monitorar a situação. Se permanecer
+            sem contato com o motorista, solicitar que seja enviado ao CTO.
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="parada-excedida" class="cards">
+      <div class="card" style="width: 60rem; text-align: center;">
+        <div class="card-header bg-info">
+          <h5 class="card-title font-weight-bold">
+            Parada Excedida.
+          </h5>
+          <p class="card-text">
+            Procedimento a ser seguido quando a GR informa que o veículo está
+            com
+            <span class="font-weight-bold">parada excedida</span>.
+          </p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            Tentar contato com o motorista, perguntar o motivo da parada e a
+            previsão de reinicio.
+          </li>
+          <li class="list-group-item">
+            Se não conseguir contato com o motorista, certificar com a GR que o
+            local não é proibido e solicitar que seja enviado comando para
+            bloquear e alarmar o veículo, informar que deve permanecer com os
+            comandos ativos, até que o motorista entre em contato ou reinicie a
+            viagem.
+          </li>
+          <li class="list-group-item">
+            Se o veículo estiver em viagem na linha CAN x SAO / SAO x CAN, ao
+            entrar em contato com o motorista, verificar o motivo da parada, se
+            for possível o reinicio, solicitar que ele reinicie viagem. Se o
+            motorista recusar, entrar em contato com o responsável da filial de
+            origem e informar a situação.
+          </li>
+          <li class="list-group-item">
+            Se for viagem na linha CAN x SAO / SAO x CAN e essa parada for
+            causar atraso na chegada do veículo, enviar e-mail para a filial de
+            origem e destino, informando sobre o atraso e se caso conseguiu
+            contato com o motorista, informar nesse e-mail o que foi conversado
+            com o ele.
+          </li>
+          <li class="list-group-item">
+            Se não teve sucesso nas tratativas, não informar a GR para
+            desconsiderar a parada, apenas informar que está sendo tratado
+            internamente e solicitar que o veículo permaneça bloqueado e
+            alarmado até que o motorista entre em contato ou reinicie.
+          </li>
+          <li class="list-group-item">
+            Enviar e-mail para a filial de origem e destino, sobre a situação,
+            solicitando que o motorista seja orientado a cumprir as regras do
+            PGR.
+          </li>
+          <li class="list-group-item">
+            Em caso de suspeita de sinistro, solicitar que o veículo seja
+            enviado ao CTO.
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="parada-residencia" class="cards">
+      <div class="card" style="width: 60rem; text-align: center;">
+        <div class="card-header bg-info">
+          <h5 class="card-title font-weight-bold">
+            Parada em Residência.
+          </h5>
+          <p class="card-text">
+            Procedimento a ser seguido quando a GR informa que o veículo está
+            <span class="font-weight-bold">parado em residência</span>.
+          </p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            Tentar contato com o motorista, informando que essa parada não é
+            permitida e que ele precisa reiniciar viagem e ir para um posto
+            autorizado. Informar que deve ir para o posto e permanecer com o
+            veículo, informar que não é autorizado abandonar o veículo no posto.
+          </li>
+          <li class="list-group-item">
+            Se não conseguir contato com o motorista ou ele recusar sair do
+            local, entrar em contato com o responsável pela filial de origem,
+            responsável pelo carregamento do veículo.
+          </li>
+          <li class="list-group-item">
+            Se o responsável da filial não conseguir fazer o motorista sair do
+            local, perguntar se ele autoriza essa parada. Se ele autorizar,
+            pegar uma previsão de reinicio do veículo e informar à GR via
+            e-mail, que foi autorizado, sempre informando quem autorizou.
+          </li>
+          <li class="list-group-item">
+            Se não conseguir contato com o motorista ou o responsável da filial,
+            informar à GR que está sendo tratado internamente, solicitando que
+            seja enviado comando para bloquear e alarmar o veículo e que
+            permaneça assim até que o veículo reinicie viagem.
+          </li>
+          <li class="list-group-item">
+            Nunca autorizar a parada, sem receber essa autorização de um
+            encarregado ou gerente da Modular.
+          </li>
+          <li class="list-group-item">
+            Registrar ocorrência e enviar e-mail para a filial de origem e
+            destino, sobre a situação, solicitando que o motorista seja
+            orientado a cumprir as regras do PGR.
+          </li>
+          <li class="list-group-item">
+            Em caso de suspeita de sinistro, solicitar que o veículo seja
+            enviado ao CTO.
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="parada-proibida" class="cards">
+      <div class="card" style="width: 60rem; text-align: center;">
+        <div class="card-header bg-info">
+          <h5 class="card-title font-weight-bold">
+            Parada Proibida.
+          </h5>
+          <p class="card-text">
+            Procedimento a ser seguido quando a GR informa que o veículo está
+            parado em local não recomendado ou proibido.
+          </p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            Tentar contato com o motorista, informando que essa parada não é
+            permitida e que ele precisa reiniciar viagem e parar somente em
+            local autorizado.
+          </li>
+          <li class="list-group-item">
+            Se não conseguir contato com o motorista ou ele recusar sair do
+            local, entrar em contato com o responsável pela filial de origem,
+            responsável pelo carregamento do veículo.
+          </li>
+          <li class="list-group-item">
+            Se o responsável da filial não conseguir fazer o motorista sair do
+            local, perguntar se ele autoriza essa parada. Se ele autorizar,
+            pegar uma previsão de reinicio do veículo e informar à GR via
+            e-mail, que foi autorizado, sempre informando quem autorizou.
+          </li>
+          <li class="list-group-item">
+            Se não conseguir contato com o motorista ou o responsável da filial,
+            informar à GR que está sendo tratado internamente, solicitando que
+            seja enviado comando para bloquear e alarmar o veículo e que
+            permaneça assim até que o veículo reinicie viagem.
+          </li>
+          <li class="list-group-item">
+            Nunca autorizar a parada, sem receber essa autorização de um
+            encarregado ou gerente da Modular.
+          </li>
+          <li class="list-group-item">
+            Registrar ocorrência e enviar e-mail para a filial de origem e
+            destino, sobre a situação, solicitando que o motorista seja
+            orientado a cumprir as regras do PGR.
+          </li>
+          <li class="list-group-item">
+            Em caso de suspeita de sinistro, solicitar que o veículo seja
+            enviado ao CTO.
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="perda-sinal" class="cards">
+      <div class="card" style="width: 60rem; text-align: center;">
+        <div class="card-header bg-info">
+          <h5 class="card-title font-weight-bold">
+            Perda de Sinal.
+          </h5>
+          <p class="card-text">
+            Procedimento a ser seguido quando a GR informa que o veículo
+            <span class="font-weight-bold">perdeu sinal</span>.
+          </p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            Verificar se o veículo perdeu sinal em movimento ou parado.
+          </li>
+          <li class="list-group-item">
+            Tentar contato com o motorista, caso não consiga contato e a perda
+            de sinal ocorreu com o veículo parado, tentar contato com o local
+            onde o veículo perdeu o sinal.
+          </li>
+          <li class="list-group-item">
+            Se não conseguiu falar com o motorista e não conseguiu contato com a
+            referência, tentar contato com o responsável pela filial de origem
+            do veículo, para verificar se possui alguma informação.
+          </li>
+          <li class="list-group-item">
+            Se não tiver sucesso nas tratativas acima, solicitar que a GR envie
+            o veículo ao CTO.
+          </li>
+          <li class="list-group-item">
+            Autorizar o envio de pronta resposta, somente com autorização do
+            Giulian.
+          </li>
+          <li class="list-group-item">
+            Registrar ocorrência e enviar e-mail para a filial de origem e
+            destino, sobre a situação.
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="macros" class="cards">
+      <div class="card" style="width: 60rem; text-align: center;">
+        <div class="card-header bg-info">
+          <h5 class="card-title font-weight-bold">
+            Uso de Macros.
+          </h5>
+          <p class="card-text">
+            Procedimento a ser seguido quando a GR informa que o motorista não
+            está enviando as macros.
+          </p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            Entrar em contato com o motorista e solicitar que ele envie as
+            macros.
+          </li>
+          <li class="list-group-item">
+            Se não conseguir contato com o motorista, entrar em contato com o
+            responsável da filial de origem, responsável pelo carregamento do
+            veículo, informando a situação e solicitando que oriente o motorista
+            a cumprir o procedimento de acordo com o PGR.
+          </li>
+          <li class="list-group-item">
+            Se não conseguir contato com o responsável da filial, seguir o
+            próximo passo.
+          </li>
+          <li class="list-group-item">
+            Registrar ocorrência e enviar e-mail para a filial de origem e
+            destino, informando a situação e solicitando que o motorista seja
+            orientado a cumprir o procedimento de acordo com o PGR.
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="logo mt-4">
+      <img src="img/logo-ccom.png" alt="Logo CCOM" width="250" />
+      <img
+        src="img/logo-modular2.png"
+        alt="Logo Modular"
+        width="350"
+        height="100"
+        class="ml-3"
+      />
+    </div>
+
+    <!-- Principal JavaScript do Bootstrap
+    ================================================== -->
+    <!-- Foi colocado no final para a página carregar mais rápido -->
+
+    <script>
+      let btnInicioJornada = document.querySelector(".menu-inicio");
+      let btnParadaDescanso = document.querySelector(".menu-descanso");
+      let btnParadaRefeicao = document.querySelector(".menu-refeicao");
+      let btnFimJornada = document.querySelector(".menu-fim");
+      let btnAbandono = document.querySelector(".menu-abandono");
+      let btnFimViagem = document.querySelector(".menu-fim-viagem");
+      let btnRota = document.querySelector(".menu-rota");
+      let btnParadaExcedida = document.querySelector(".menu-parada-excedida");
+      let btnParadaResidencia = document.querySelector(
+        ".menu-parada-residencia"
+      );
+      let btnParadaProibida = document.querySelector(".menu-parada-proibida");
+      let btnPerdaSinal = document.querySelector(".menu-perda-sinal");
+      let btnMacros = document.querySelector(".menu-macros");
+
+      let cardInicioJornada = document.querySelector("#inicio-jornada");
+      let cardParadaDescanso = document.querySelector("#parada-descanso");
+      let cardParadaRefeicao = document.querySelector("#parada-refeicao");
+      let cardFimJornada = document.querySelector("#fim-jornada");
+      let cardAbandono = document.querySelector("#abandono");
+      let cardFimViagem = document.querySelector("#fim-viagem");
+      let cardRota = document.querySelector("#rota");
+      let cardParadaExcedida = document.querySelector("#parada-excedida");
+      let cardParadaResidencia = document.querySelector("#parada-residencia");
+      let cardParadaProibida = document.querySelector("#parada-proibida");
+      let cardPerdaSinal = document.querySelector("#perda-sinal");
+      let cardMacros = document.querySelector("#macros");
+
+      let logo = document.querySelector(".logo");
+      function showCardsJornada() {
+        btnInicioJornada.addEventListener("click", function() {
+          cardInicioJornada.classList.toggle("show-card");
+          cardParadaDescanso.classList.remove("show-card");
+          cardParadaRefeicao.classList.remove("show-card");
+          cardFimJornada.classList.remove("show-card");
+          cardAbandono.classList.remove("show-card");
+          cardFimViagem.classList.remove("show-card");
+          cardRota.classList.remove("show-card");
+          cardParadaExcedida.classList.remove("show-card");
+          cardParadaResidencia.classList.remove("show-card");
+          cardParadaProibida.classList.remove("show-card");
+          cardPerdaSinal.classList.remove("show-card");
+          cardMacros.classList.remove("show-card");
+
+          logo.classList.add("show-logo");
+        });
+        btnParadaDescanso.addEventListener("click", function() {
+          cardParadaDescanso.classList.toggle("show-card");
+          cardInicioJornada.classList.remove("show-card");
+          cardParadaRefeicao.classList.remove("show-card");
+          cardFimJornada.classList.remove("show-card");
+          cardAbandono.classList.remove("show-card");
+          cardFimViagem.classList.remove("show-card");
+          cardRota.classList.remove("show-card");
+          cardParadaExcedida.classList.remove("show-card");
+          cardParadaResidencia.classList.remove("show-card");
+          cardParadaProibida.classList.remove("show-card");
+          cardPerdaSinal.classList.remove("show-card");
+          cardMacros.classList.remove("show-card");
+
+          logo.classList.add("show-logo");
+        });
+        btnParadaRefeicao.addEventListener("click", function() {
+          cardParadaRefeicao.classList.toggle("show-card");
+          cardInicioJornada.classList.remove("show-card");
+          cardParadaDescanso.classList.remove("show-card");
+          cardFimJornada.classList.remove("show-card");
+
+          cardAbandono.classList.remove("show-card");
+          cardFimViagem.classList.remove("show-card");
+          cardRota.classList.remove("show-card");
+          cardParadaExcedida.classList.remove("show-card");
+          cardParadaResidencia.classList.remove("show-card");
+          cardParadaProibida.classList.remove("show-card");
+          cardPerdaSinal.classList.remove("show-card");
+          cardMacros.classList.remove("show-card");
+
+          logo.classList.add("show-logo");
+        });
+        btnFimJornada.addEventListener("click", function() {
+          cardFimJornada.classList.toggle("show-card");
+          cardParadaDescanso.classList.remove("show-card");
+          cardParadaRefeicao.classList.remove("show-card");
+          cardInicioJornada.classList.remove("show-card");
+
+          cardAbandono.classList.remove("show-card");
+          cardFimViagem.classList.remove("show-card");
+          cardRota.classList.remove("show-card");
+          cardParadaExcedida.classList.remove("show-card");
+          cardParadaResidencia.classList.remove("show-card");
+          cardParadaProibida.classList.remove("show-card");
+          cardPerdaSinal.classList.remove("show-card");
+          cardMacros.classList.remove("show-card");
+
+          logo.classList.add("show-logo");
+        });
+      }
+
+      function showCardsGr() {
+        btnAbandono.addEventListener("click", function() {
+          cardAbandono.classList.toggle("show-card");
+          cardFimJornada.classList.remove("show-card");
+          cardFimViagem.classList.remove("show-card");
+          cardRota.classList.remove("show-card");
+          cardParadaExcedida.classList.remove("show-card");
+          cardParadaResidencia.classList.remove("show-card");
+          cardParadaProibida.classList.remove("show-card");
+          cardPerdaSinal.classList.remove("show-card");
+          cardMacros.classList.remove("show-card");
+          cardInicioJornada.classList.remove("show-card");
+          cardParadaDescanso.classList.remove("show-card");
+          cardParadaRefeicao.classList.remove("show-card");
+          cardFimJornada.classList.remove("show-card");
+
+          logo.classList.add("show-logo");
+        });
+        btnFimViagem.addEventListener("click", function() {
+          cardFimViagem.classList.toggle("show-card");
+          cardAbandono.classList.remove("show-card");
+          cardRota.classList.remove("show-card");
+          cardParadaExcedida.classList.remove("show-card");
+          cardParadaResidencia.classList.remove("show-card");
+          cardParadaProibida.classList.remove("show-card");
+          cardPerdaSinal.classList.remove("show-card");
+          cardMacros.classList.remove("show-card");
+
+          cardInicioJornada.classList.remove("show-card");
+          cardParadaDescanso.classList.remove("show-card");
+          cardParadaRefeicao.classList.remove("show-card");
+          cardFimJornada.classList.remove("show-card");
+
+          logo.classList.add("show-logo");
+        });
+        btnRota.addEventListener("click", function() {
+          cardRota.classList.toggle("show-card");
+          cardAbandono.classList.remove("show-card");
+          cardFimViagem.classList.remove("show-card");
+          cardParadaExcedida.classList.remove("show-card");
+          cardParadaResidencia.classList.remove("show-card");
+          cardParadaProibida.classList.remove("show-card");
+          cardPerdaSinal.classList.remove("show-card");
+          cardMacros.classList.remove("show-card");
+
+          cardInicioJornada.classList.remove("show-card");
+          cardParadaDescanso.classList.remove("show-card");
+          cardParadaRefeicao.classList.remove("show-card");
+          cardFimJornada.classList.remove("show-card");
+
+          logo.classList.add("show-logo");
+        });
+        btnParadaExcedida.addEventListener("click", function() {
+          cardParadaExcedida.classList.toggle("show-card");
+          cardAbandono.classList.remove("show-card");
+          cardRota.classList.remove("show-card");
+          cardFimViagem.classList.remove("show-card");
+          cardParadaResidencia.classList.remove("show-card");
+          cardParadaProibida.classList.remove("show-card");
+          cardPerdaSinal.classList.remove("show-card");
+          cardMacros.classList.remove("show-card");
+
+          cardInicioJornada.classList.remove("show-card");
+          cardParadaDescanso.classList.remove("show-card");
+          cardParadaRefeicao.classList.remove("show-card");
+          cardFimJornada.classList.remove("show-card");
+
+          logo.classList.add("show-logo");
+        });
+        btnParadaResidencia.addEventListener("click", function() {
+          cardParadaResidencia.classList.toggle("show-card");
+          cardAbandono.classList.remove("show-card");
+          cardRota.classList.remove("show-card");
+          cardFimViagem.classList.remove("show-card");
+          cardParadaExcedida.classList.remove("show-card");
+          cardParadaProibida.classList.remove("show-card");
+          cardPerdaSinal.classList.remove("show-card");
+          cardMacros.classList.remove("show-card");
+
+          cardInicioJornada.classList.remove("show-card");
+          cardParadaDescanso.classList.remove("show-card");
+          cardParadaRefeicao.classList.remove("show-card");
+          cardFimJornada.classList.remove("show-card");
+
+          logo.classList.add("show-logo");
+        });
+        btnParadaProibida.addEventListener("click", function() {
+          cardParadaProibida.classList.toggle("show-card");
+          cardAbandono.classList.remove("show-card");
+          cardRota.classList.remove("show-card");
+          cardFimViagem.classList.remove("show-card");
+          cardParadaExcedida.classList.remove("show-card");
+          cardParadaResidencia.classList.remove("show-card");
+          cardPerdaSinal.classList.remove("show-card");
+          cardMacros.classList.remove("show-card");
+
+          cardInicioJornada.classList.remove("show-card");
+          cardParadaDescanso.classList.remove("show-card");
+          cardParadaRefeicao.classList.remove("show-card");
+          cardFimJornada.classList.remove("show-card");
+
+          logo.classList.add("show-logo");
+        });
+        btnPerdaSinal.addEventListener("click", function() {
+          cardPerdaSinal.classList.toggle("show-card");
+          cardAbandono.classList.remove("show-card");
+          cardRota.classList.remove("show-card");
+          cardFimViagem.classList.remove("show-card");
+          cardParadaExcedida.classList.remove("show-card");
+          cardParadaResidencia.classList.remove("show-card");
+          cardParadaProibida.classList.remove("show-card");
+          cardMacros.classList.remove("show-card");
+
+          cardInicioJornada.classList.remove("show-card");
+          cardParadaDescanso.classList.remove("show-card");
+          cardParadaRefeicao.classList.remove("show-card");
+          cardFimJornada.classList.remove("show-card");
+
+          logo.classList.add("show-logo");
+        });
+        btnMacros.addEventListener("click", function() {
+          cardMacros.classList.toggle("show-card");
+          cardAbandono.classList.remove("show-card");
+          cardRota.classList.remove("show-card");
+          cardFimViagem.classList.remove("show-card");
+          cardParadaExcedida.classList.remove("show-card");
+          cardParadaResidencia.classList.remove("show-card");
+          cardParadaProibida.classList.remove("show-card");
+          cardPerdaSinal.classList.remove("show-card");
+
+          cardInicioJornada.classList.remove("show-card");
+          cardParadaDescanso.classList.remove("show-card");
+          cardParadaRefeicao.classList.remove("show-card");
+          cardFimJornada.classList.remove("show-card");
+
+          logo.classList.add("show-logo");
+        });
+      }
+
+      showCardsJornada();
+      showCardsGr();
+    </script>
+
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+      integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+      integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Ícones -->
+    <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+    <script>
+      feather.replace();
+    </script>
+  </body>
+</html>

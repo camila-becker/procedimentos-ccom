@@ -1,0 +1,24 @@
+.logo {
+  display: none;
+}
+
+.background {
+  background-color: #273f5a;
+  color: #fff;
+}
+
+.cards {
+  display: none;
+}
+
+.show-card {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.show-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

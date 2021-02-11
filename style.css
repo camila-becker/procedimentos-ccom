@@ -12,7 +12,7 @@
 }
 
 .card-title, .card-text{
-  color: #fff;
+  color: #fff !important;
 }
 
 .show-card {

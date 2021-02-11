@@ -11,13 +11,9 @@
   display: none;
 }
 
-.card-title{
+.title, .text{
   color: #fff;
 }
-
-.card-text{
-  color: #fff;
-};
 
 .show-card {
   display: flex;

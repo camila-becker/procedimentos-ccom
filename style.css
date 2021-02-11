@@ -11,6 +11,14 @@
   display: none;
 }
 
+.card-title{
+  color: #fff;
+}
+
+.card-text{
+  color: #fff;
+};
+
 .show-card {
   display: flex;
   justify-content: center;
